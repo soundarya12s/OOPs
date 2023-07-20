@@ -36,11 +36,12 @@ namespace OOPs
                         InventoryManagementDetailsOperation management = new InventoryManagementDetailsOperation();
                         while (flag2)
                         {
-                            Console.WriteLine("1.read files\n2.add values\n3.delete Value\n4.update to json\n5.Edit");
+                            Console.WriteLine("1.read files\n2.add values\n3.Write to json\n4.delete Value\n5.Edit");
                             int choice2 = Convert.ToInt32(Console.ReadLine());
 
                             switch (choice2)
                             {
+                                
                                 case 1:
                                     management.ReadInventoryJson(INVENTORY_MANAGEMENT_FILE);
                                     break;
@@ -60,10 +61,14 @@ namespace OOPs
                                     string InventoryName = Console.ReadLine();
                                     management.DeleteInventoryManagement(objName, InventoryName);
                                     break;
-                                case5:
+                                case 5:
+                                    Console.WriteLine("Enter from where you want to edit");
+                                    objName = Console.ReadLine();
+                                    Console.WriteLine("Enter name to edit:");
+                                    InventoryName = Console.ReadLine();
                                     management.EditValue(objName, InventoryName);
                                     break;
-                                case 5:
+                                case 6:
                                     flag2 = false;
                                     break;
 
