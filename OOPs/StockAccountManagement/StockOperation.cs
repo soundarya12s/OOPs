@@ -1,12 +1,25 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using OOPs.DataInventoryManagement;
+using OOPs.InventoryManagement;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOPs.StockAccountManagement
 {
-    internal class StockOperation
+    public class StockOperation
     {
+          InventoryManagementDetails list;
+        public void ReadStockJson(string filePath)
+        {
+            var json = File.ReadAllText(filePath);
+            List<StockDetails> list = JsonConvert.DeserializeObject<List<StockDetails>>(json);
+            foreach (var data in list)
+            {
+                Console.WriteLine(data.StockName + " " + data.NoOfShares + " " + data.SharePrice);
+            }
+        }
+       
+
     }
 }
+
