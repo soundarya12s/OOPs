@@ -1,10 +1,15 @@
-﻿using System;
-namespace OOps
+﻿using OOPs.DataInventoryManagement;
+using System;
+namespace OOPs
 {
     class Program
     {
-        static void Main(string[] args)
+        static string INVENTORY_DETAILS_FILE = @"D:\gittestrep\OOPs\OOPs\DataInventoryManagement\InventoryData.json";
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to OOPs program");
+            InventoryDetailsOperation inventory = new InventoryDetailsOperation();
+            inventory.ReadInventoryJson(INVENTORY_DETAILS_FILE);
+
         }
+    }
 }
