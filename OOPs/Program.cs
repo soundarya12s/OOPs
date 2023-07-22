@@ -1,4 +1,5 @@
-﻿using OOPs.DataInventoryManagement;
+﻿using OOPs.CommercialDataProcessing;
+using OOPs.DataInventoryManagement;
 using OOPs.InventoryManagement;
 using OOPs.StockAccountManagement;
 using System;
@@ -11,16 +12,17 @@ namespace OOPs
         static string INVENTORY_DETAILS_FILE = @"D:\gittestrep\OOPs\OOPs\DataInventoryManagement\InventoryData.json";
         static string INVENTORY_MANAGEMENT_FILE = @"D:\gittestrep\OOPs\OOPs\InventoryManagement\InventoryDataManagementData.json";
         static string STOCK_MANAGEMENT_FILE = @"D:\gittestrep\OOPs\OOPs\StockAccountManagement\CompanyStock.json";
+        static string CUSTOMER_STOCK_FILE = @"D:\gittestrep\OOPs\OOPs\CommercialDataProcessing\CustomerStockData.json";
         public static void Main(string[] args)
         {
             InventoryDetailsOperation inventory = new InventoryDetailsOperation();
-            
-           
+
+          
             StockOperation stock = new StockOperation();
             bool flag = true;
 
 
-            Console.WriteLine("Choose: \n1.Inventory details\n2.Inventory Management\n3.Stock\n4.Exit");
+            Console.WriteLine("Choose: \n1.Inventory details\n2.Inventory Management\n3.Stock\n4.Customer Stock");
 
             while (flag)
             {
@@ -71,6 +73,8 @@ namespace OOPs
                                 case 6:
                                     flag2 = false;
                                     break;
+                                default:
+                                    break;
 
                             }
                         }
@@ -78,14 +82,57 @@ namespace OOPs
                     case 3:
                         stock.ReadStockJson(STOCK_MANAGEMENT_FILE);
                         break;
-                      
                     case 4:
+                        
+                        StockOperations stockOperationCommercial = new StockOperations();
+                        stockOperationCommercial.ReadCompanyJson(STOCK_MANAGEMENT_FILE);
+                        stockOperationCommercial.ReadCustomerJson(CUSTOMER_STOCK_FILE);
+                        bool flag3 = true;
+                        while (flag3)
+                        {
+                            Console.WriteLine("Enter the option to proceed\n 1.Buy Stock\n 2.Sell Stock\n 3.Write to files\n 4.Display\n 5.Exit");
+                           
+                            int option1 = Convert.ToInt32(Console.ReadLine());
+                            switch (option1)
+                            {
+                                case 1:
+                                    Console.WriteLine("Enter the amount:");
+                                    int amount = Convert.ToInt32(Console.ReadLine());
+                                    stockOperationCommercial.CustomerBuyStockFromCompany(amount);
+                                    break;
+                                case 2:
+
+
+
+                                    break;
+                                case 3:
+                                    stockOperationCommercial.WriteToCompanyFile(STOCK_MANAGEMENT_FILE);
+                                    stockOperationCommercial.WriteToCustomerFile(CUSTOMER_STOCK_FILE);
+                                    break;
+                                case 4:
+                                    stockOperationCommercial.ReadCompanyJson(STOCK_MANAGEMENT_FILE);
+                                    stockOperationCommercial.ReadCustomerJson(CUSTOMER_STOCK_FILE);
+                                    break;
+                                case 5:
+                                    flag2 = false;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case 5:
                         flag = false;
                         break;
-
-
+                    default:
+                        break;
                 }
             }
         }
+
+
+
+
     }
 }
+        
