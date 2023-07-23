@@ -101,7 +101,7 @@ namespace OOPs.CommercialDataProcessing
 
       public void CustomerSellStock (int amount)
         {
-            Console.WriteLine("Enter the stock name to sell");
+            Console.WriteLine("Enter the stock name to buy");
             string stockName = Console.ReadLine();
             Console.WriteLine("Enter the No.of Shares");
             int shares = Convert.ToInt32(Console.ReadLine());
@@ -126,22 +126,22 @@ namespace OOPs.CommercialDataProcessing
                 Console.WriteLine("Stock Name doesnt exists");
             else
             {
-                CustomerStock buyCompanyStock = new CustomerStock();
-                foreach (var stock in CustomerStock)
+                StockDetails buyCustomerStock = new StockDetails();
+                foreach (var stock in CompanyStock)
                 {
-                    if (stock.StockSymbol.Equals(stockName))
+                    if (stock.StockName.Equals(stockName))
                     {
-                        buyCompanyStock = stock;
+                        buyCustomerStock = stock;
                         stock.NoOfShares += shares;
                     }
                     else
                     {
-                        buyCompanyStock.StockSymbol = stockName;
-                        buyCompanyStock.NoOfShares = shares;
-                        buyCompanyStock.SharePrice = buyStock.SharePrice;
+                        buyCustomerStock.StockName = stockName;
+                        buyCustomerStock.NoOfShares = shares;
+                        buyCustomerStock.SharePrice = buyStock.SharePrice;
                     }
                 }
-                CustomerStock.Add(buyCompanyStock);
+                CompanyStock.Add(buyCustomerStock);
             }
         } 
         public void WriteToCompanyFile(string filePath)
