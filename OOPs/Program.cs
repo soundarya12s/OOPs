@@ -2,8 +2,6 @@
 using OOPs.DataInventoryManagement;
 using OOPs.InventoryManagement;
 using OOPs.StockAccountManagement;
-using System;
-using System.Net.Http.Headers;
 
 namespace OOPs
 {
@@ -83,7 +81,7 @@ namespace OOPs
                         stock.ReadStockJson(STOCK_MANAGEMENT_FILE);
                         break;
                     case 4:
-                        
+
                         StockOperations stockOperationCommercial = new StockOperations();
                         stockOperationCommercial.ReadCompanyJson(STOCK_MANAGEMENT_FILE);
                         stockOperationCommercial.ReadCustomerJson(CUSTOMER_STOCK_FILE);
@@ -102,7 +100,9 @@ namespace OOPs
                                     break;
                                 case 2:
 
-
+                                    Console.WriteLine("Enter the amount:");
+                                    amount = Convert.ToInt32(Console.ReadLine());
+                                    stockOperationCommercial.CustomerSellStock(amount);
 
                                     break;
                                 case 3:

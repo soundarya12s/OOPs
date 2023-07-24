@@ -36,6 +36,7 @@ namespace OOPs.CommercialDataProcessing
 
         public void displayCompanyStock(List<StockDetails> CompanyStock)
         {
+            Console.WriteLine("Company Stock: ");
             foreach (var data in CompanyStock)
             {
                 Console.WriteLine("Stock:" + data.StockName + "\nNo Of Shares:" + data.NoOfShares + "\nShare Price:" + data.SharePrice+"\n");
@@ -55,6 +56,7 @@ namespace OOPs.CommercialDataProcessing
 
         public void CustomerBuyStockFromCompany(int amount)
         {
+
             Console.WriteLine("Enter the stock name to buy");
             string stockName = Console.ReadLine();
             Console.WriteLine("Enter the No.of Shares");
@@ -126,22 +128,22 @@ namespace OOPs.CommercialDataProcessing
                 Console.WriteLine("Stock Name doesnt exists");
             else
             {
-                CustomerStock buyCompanyStock = new CustomerStock();
-                foreach (var stock in CustomerStock)
+                StockDetails buyCompanyStock = new StockDetails();
+                foreach (var stock in CompanyStock)
                 {
-                    if (stock.StockSymbol.Equals(stockName))
+                    if (stock.StockName.Equals(stockName))
                     {
                         buyCompanyStock = stock;
                         stock.NoOfShares += shares;
                     }
                     else
                     {
-                        buyCompanyStock.StockSymbol = stockName;
+                        buyCompanyStock.StockName = stockName;
                         buyCompanyStock.NoOfShares = shares;
                         buyCompanyStock.SharePrice = buyStock.SharePrice;
                     }
                 }
-                CustomerStock.Add(buyCompanyStock);
+                CompanyStock.Add(buyCompanyStock);
             }
         } 
         public void WriteToCompanyFile(string filePath)
